@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".SummaryFragmentBinding">
+		<import type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+
+		<variable name="summary" type="com.medexpertz.medexpertzdoctor.prescription.Summary"/>
+		<variable name="status" type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+		<variable name="handler" type="com.medexpertz.medexpertzdoctor.prescription.SummaryFragment"/>
+	</data>
+	<android.support.constraint.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<TextView
+			android:id="@+id/summaryLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/proxima_nova_semi_bold"
+			android:padding="16dp"
+			android:text="@string/add_summary"
+			android:textColor="#282828"
+			android:textSize="14sp"/>
+
+		<android.support.v7.widget.AppCompatEditText
+			android:id="@+id/summaryET"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:background="@drawable/draw_rect_stroke_7f000000_r3"
+			android:enabled="@{status != Status.LOADING}"
+			android:gravity="top"
+			android:text="@={summary.summary}"
+			android:hint="@string/summary"
+			android:inputType="textMultiLine|textCapSentences"
+			android:lines="5"
+			android:paddingBottom="16dp"
+			android:paddingEnd="12dp"
+			android:paddingStart="12dp"
+			android:paddingTop="16dp"
+			android:textColor="#242424"
+			android:textColorHint="#545454"
+			android:textSize="14sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="@id/summaryLabel"
+			app:layout_constraintTop_toBottomOf="@id/summaryLabel"/>
+
+		<android.support.v7.widget.AppCompatButton
+			android:id="@+id/doneBtn"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="40dp"
+			android:layout_marginEnd="12dp"
+			android:layout_marginStart="12dp"
+			android:onClick="@{()->handler.onSummary(summary)}"
+			android:layout_marginTop="25dp"
+			android:enabled="@{status != Status.LOADING}"
+			android:fontFamily="@font/proxima_nova_bold"
+			android:text="@string/done"
+			app:backgroundTint="@color/colorPrimary"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/summaryET"/>
+
+		<com.wang.avi.AVLoadingIndicatorView
+			style="@style/AVLoadingIndicatorView.Small"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="8dp"
+			android:stateLoading="@{status == Status.LOADING}"
+			app:indicatorColor="@color/white"
+			app:indicatorName="BallSpinFadeLoaderIndicator"
+			app:layout_constraintBottom_toBottomOf="@id/doneBtn"
+			app:layout_constraintEnd_toEndOf="@id/doneBtn"
+			app:layout_constraintTop_toTopOf="@id/doneBtn"/>
+
+	</android.support.constraint.ConstraintLayout>
+</layout>

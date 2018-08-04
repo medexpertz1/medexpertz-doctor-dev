@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".LabTestItemBinding">
+		<variable name="item" type="com.medexpertz.medexpertzdoctor.prescription.LabTest"/>
+	</data>
+
+	<FrameLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="#FF0000"
+			android:drawableEnd="@drawable/ic_delete_white_24dp"
+			android:drawablePadding="16dp"
+			android:gravity="end|center_vertical"
+			android:padding="16dp"
+			android:text="@string/delete"
+			android:textAllCaps="true"
+			android:textColor="@color/white"
+			android:textSize="16sp"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:drawablePadding="16dp"
+			android:drawableStart="@drawable/ic_delete_white_24dp"
+			android:gravity="center_vertical"
+			android:padding="16dp"
+			android:text="@string/delete"
+			android:textAllCaps="true"
+			android:textColor="@color/white"
+			android:textSize="16sp"
+			android:textStyle="bold"/>
+
+		<android.support.constraint.ConstraintLayout
+			android:id="@+id/foregroundCL"
+			android:background="@color/white"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="16dp">
+
+			<TextView
+				android:id="@+id/titleTV"
+				android:layout_width="0dp"
+				app:layout_constraintEnd_toEndOf="parent"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:text="@{item.testName}"
+				android:textColor="#282828"
+				android:textSize="16sp"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="Blood Test"/>
+
+			<TextView
+				android:id="@+id/commentsTV"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:text="@{item.comments}"
+				android:textColor="#545454"
+				android:textSize="14sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/titleTV"
+				tools:text="Take before food in the morning"/>
+		</android.support.constraint.ConstraintLayout>
+	</FrameLayout>
+</layout>

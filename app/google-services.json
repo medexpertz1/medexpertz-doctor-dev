@@ -1,0 +1,129 @@
+{
+  "project_info": {
+    "project_number": "29688739746",
+    "firebase_url": "https://medexpertz-b6351.firebaseio.com",
+    "project_id": "medexpertz-b6351",
+    "storage_bucket": "medexpertz-b6351.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29688739746:android:e4aba9d72523499c",
+        "android_client_info": {
+          "package_name": "com.bigappcompany.medexpertz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29688739746-jvc8uju5etr4h06o7mumsipqinlk6h2i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bigappcompany.medexpertz",
+            "certificate_hash": "6b2411ccbf358daea7e6c5001feab9ad5d015353"
+          }
+        },
+        {
+          "client_id": "29688739746-cfdldivenugngaqdga3hfo7hljjbh5af.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "29688739746-cfdldivenugngaqdga3hfo7hljjbh5af.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0JJLOpQFyXwLX7Ly6d00zFu9K5NlmjOk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29688739746-cfdldivenugngaqdga3hfo7hljjbh5af.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "29688739746-vugmo4ms2qa8f7nr8u7d32agqr9l6vsb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bigapp.MedExpertzPatient"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29688739746:android:d2df8e66047a6463",
+        "android_client_info": {
+          "package_name": "com.medexpertz.medexpertzdoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29688739746-u0ovq45vt8bsec7nufa7snla6p4p55qv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medexpertz.medexpertzdoctor",
+            "certificate_hash": "24eb012deb8dde9a04a8ba2f9a1011c41c29ef3c"
+          }
+        },
+        {
+          "client_id": "29688739746-ra13qm2dsgnp6lobf388gd4fi63fivjh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medexpertz.medexpertzdoctor",
+            "certificate_hash": "6b2411ccbf358daea7e6c5001feab9ad5d015353"
+          }
+        },
+        {
+          "client_id": "29688739746-cfdldivenugngaqdga3hfo7hljjbh5af.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "29688739746-cfdldivenugngaqdga3hfo7hljjbh5af.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0JJLOpQFyXwLX7Ly6d00zFu9K5NlmjOk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29688739746-cfdldivenugngaqdga3hfo7hljjbh5af.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "29688739746-vugmo4ms2qa8f7nr8u7d32agqr9l6vsb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bigapp.MedExpertzPatient"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

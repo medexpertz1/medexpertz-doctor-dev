@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".LoginFragmentBinding">
+		<import type="com.medexpertz.medexpertzdoctor.auth.AuthState"/>
+
+		<variable name="validate" type="Boolean"/>
+		<variable name="handler" type="com.medexpertz.medexpertzdoctor.auth.LoginFragment"/>
+		<variable name="auth" type="com.medexpertz.medexpertzdoctor.auth.Auth"/>
+		<variable name="state" type="com.medexpertz.medexpertzdoctor.auth.AuthState"/>
+	</data>
+
+	<android.support.constraint.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/draw_rect_gradient_17845d_01c853">
+
+		<TextView
+			android:id="@+id/titleLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="64.7dp"
+			android:fontFamily="@font/cambria_bold"
+			android:text="@string/med_expertz"
+			android:textColor="#ffffff"
+			android:textSize="40sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+		<TextView
+			android:id="@+id/contentLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/cambria"
+			android:text="@string/book_online_any_time_anywhere"
+			android:textColor="#ffffff"
+			android:textSize="12sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/titleLabel"/>
+
+		<android.support.v7.widget.AppCompatEditText
+			android:id="@+id/emailET"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="28dp"
+			android:layout_marginStart="28dp"
+			android:layout_marginTop="64dp"
+			android:background="@drawable/draw_rect_4c000000_r26"
+			android:enabled="@{state != AuthState.LOADING}"
+			android:error="@{validate &amp;&amp; !auth.emailValid ? @string/invalid_email : null}"
+			android:hint="@string/email"
+			android:inputType="textEmailAddress"
+			android:paddingBottom="18.7dp"
+			android:paddingEnd="8dp"
+			android:paddingStart="29dp"
+			android:paddingTop="19.3dp"
+			android:text="@={auth.email}"
+			android:textColor="@color/white"
+			android:textColorHint="#7fffffff"
+			android:textSize="16sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/contentLabel"
+			tools:text="hardikvanand@gmail.com"/>
+
+		<android.support.v7.widget.AppCompatEditText
+			android:id="@+id/passwordET"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="28dp"
+			android:layout_marginStart="28dp"
+			android:layout_marginTop="38dp"
+			android:background="@drawable/draw_rect_4c000000_r26"
+			android:enabled="@{state != AuthState.LOADING}"
+			android:error="@{validate &amp;&amp; !auth.passwordValid ? @string/invalid_password : null}"
+			android:hint="@string/password"
+			android:inputType="textPassword"
+			android:paddingBottom="18.7dp"
+			android:paddingEnd="8dp"
+			android:paddingStart="29dp"
+			android:paddingTop="19.3dp"
+			android:text="@={auth.password}"
+			android:textColor="@color/white"
+			android:textColorHint="#7fffffff"
+			android:textSize="16sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/emailET"
+			tools:text="hardikvanand@gmail.com"/>
+
+		<TextView
+			android:id="@+id/forgotTV"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="16sp"
+			android:text="@string/forgot_password"
+			android:textColor="#ffffff"
+			android:textSize="10sp"
+			app:layout_constraintEnd_toEndOf="@id/passwordET"
+			app:layout_constraintStart_toStartOf="@id/passwordET"
+			app:layout_constraintTop_toBottomOf="@id/passwordET"/>
+
+		<android.support.v7.widget.CardView
+			android:id="@+id/signInCV"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="28dp"
+			android:layout_marginStart="28dp"
+			android:layout_marginTop="7dp"
+			android:onClick="@{()->handler.onSignIn()}"
+			app:cardCornerRadius="26dp"
+			app:contentPadding="16dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/forgotTV">
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:fontFamily="@font/proxima_nova_bold"
+				android:text="@string/sign_in"
+				android:textAllCaps="true"
+				android:textColor="@color/colorPrimary"
+				android:textSize="16sp"/>
+
+			<com.wang.avi.AVLoadingIndicatorView
+				android:id="@+id/loaderLIV"
+				style="@style/AVLoadingIndicatorView.Small"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:stateLoading="@{state == AuthState.LOADING}"
+				app:indicatorColor="@color/colorPrimary"
+				app:indicatorName="BallSpinFadeLoaderIndicator"/>
+		</android.support.v7.widget.CardView>
+
+		<TextView
+			android:id="@+id/newTV"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:onClick="@{() -> handler.onRegister()}"
+			android:paddingBottom="8dp"
+			android:paddingEnd="0dp"
+			android:paddingStart="16dp"
+			android:paddingTop="8dp"
+			android:text="@string/dont_have_account"
+			android:textColor="#ffffff"
+			android:textSize="12sp"
+			app:layout_constraintEnd_toStartOf="@+id/signUpTV"
+			app:layout_constraintHorizontal_chainStyle="packed"
+			app:layout_constraintStart_toStartOf="@id/signInCV"
+			app:layout_constraintTop_toBottomOf="@id/signInCV"/>
+
+		<TextView
+			android:id="@id/signUpTV"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/proxima_nova_semi_bold"
+			android:onClick="@{() -> handler.onRegister()}"
+			android:paddingBottom="8dp"
+			android:paddingEnd="16dp"
+			android:paddingStart="4dp"
+			android:paddingTop="8dp"
+			android:text="@string/sign_up"
+			android:textColor="#ffffff"
+			android:textSize="14sp"
+			app:layout_constraintBaseline_toBaselineOf="@id/newTV"
+			app:layout_constraintEnd_toEndOf="@id/signInCV"
+			app:layout_constraintStart_toEndOf="@id/newTV"/>
+	</android.support.constraint.ConstraintLayout>
+</layout>

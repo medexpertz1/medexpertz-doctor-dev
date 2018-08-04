@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".PrescriptionItemBinding">
+		<import type="android.view.View"/>
+		<variable
+			name="item"
+			type="com.medexpertz.medexpertzdoctor.prescription.Prescription"/>
+	</data>
+	<FrameLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="#FF0000"
+			android:drawableEnd="@drawable/ic_delete_white_24dp"
+			android:drawablePadding="16dp"
+			android:gravity="end|center_vertical"
+			android:padding="16dp"
+			android:text="@string/delete"
+			android:textAllCaps="true"
+			android:textColor="@color/white"
+			android:textSize="16sp"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:drawablePadding="16dp"
+			android:drawableStart="@drawable/ic_delete_white_24dp"
+			android:gravity="center_vertical"
+			android:padding="16dp"
+			android:text="@string/delete"
+			android:textAllCaps="true"
+			android:textColor="@color/white"
+			android:textSize="16sp"
+			android:textStyle="bold"/>
+
+		<android.support.constraint.ConstraintLayout
+			android:id="@+id/foregroundCL"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/white"
+			android:paddingBottom="21dp"
+			android:paddingEnd="16dp"
+			android:paddingStart="16dp"
+			android:paddingTop="27dp">
+
+			<TextView
+				android:id="@+id/medicineTV"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:text="@{item.medicineName}"
+				android:textColor="#282828"
+				android:textSize="16sp"
+				app:layout_constraintEnd_toStartOf="@+id/countTV"
+				app:layout_constraintStart_toStartOf="parent"
+				tools:text="Aspirin 250g"/>
+
+			<TextView
+				android:id="@+id/durationTV"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+				android:background="@drawable/draw_rect_green_c3"
+				android:gravity="center_horizontal"
+				android:paddingBottom="3dp"
+				android:paddingEnd="11dp"
+				android:paddingStart="11dp"
+				android:paddingTop="2dp"
+				android:text="@{@plurals/format_day(item.noOfDays, item.noOfDays)}"
+				android:textColor="#fefefe"
+				android:textSize="12sp"
+				app:layout_constraintTop_toBottomOf="@id/medicineTV"
+				tools:text="5 Days"/>
+
+			<TextView
+				android:id="@id/countTV"
+				android:layout_width="38.7dp"
+				android:layout_height="38.7dp"
+				android:layout_marginEnd="22.7dp"
+				android:background="@drawable/draw_circle_1917845d"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:gravity="center"
+				android:text="@{item.qtyString()}"
+				android:textColor="#282828"
+				android:textSize="16sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="10"/>
+
+			<TextView
+				android:id="@+id/timesLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="24dp"
+				android:gravity="center_horizontal"
+				android:text="@string/time"
+				android:textColor="#545454"
+				android:textSize="14sp"
+				app:layout_constraintTop_toBottomOf="@id/durationTV"/>
+
+			<TextView
+				android:id="@+id/morningLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="12dp"
+				android:background="@drawable/draw_rect_green_c3"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:gravity="center_horizontal"
+				android:paddingBottom="5dp"
+				android:paddingEnd="11.7dp"
+				android:paddingStart="11.7dp"
+				android:paddingTop="5dp"
+				android:text="@string/morning"
+				android:textColor="#ffffff"
+				android:textSize="10sp"
+				android:visibility="@{item.morning != 0 ? View.VISIBLE : View.GONE}"
+				app:layout_constraintTop_toBottomOf="@id/timesLabel"/>
+
+			<TextView
+				android:id="@+id/afternoonLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="12.3dp"
+				android:layout_marginTop="12dp"
+				android:background="@drawable/draw_rect_green_c3"
+				android:paddingBottom="5dp"
+				android:paddingEnd="11.7dp"
+				android:paddingStart="11.7dp"
+				android:paddingTop="5dp"
+				android:text="@string/afternoon"
+				android:textColor="#ffffff"
+				android:textSize="10sp"
+				android:visibility="@{item.afternoon != 0 ? View.VISIBLE : View.GONE}"
+				app:layout_constraintStart_toEndOf="@id/morningLabel"
+				app:layout_constraintTop_toBottomOf="@id/timesLabel"/>
+
+			<TextView
+				android:id="@+id/eveningLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="12.3dp"
+				android:layout_marginTop="12dp"
+				android:background="@drawable/draw_rect_green_c3"
+				android:paddingBottom="5dp"
+				android:paddingEnd="11.7dp"
+				android:paddingStart="11.7dp"
+				android:paddingTop="5dp"
+				android:text="@string/evening"
+				android:textColor="#ffffff"
+				android:textSize="10sp"
+				android:visibility="@{item.evening != 0 ? View.VISIBLE : View.GONE}"
+				app:layout_constraintStart_toEndOf="@id/afternoonLabel"
+				app:layout_constraintTop_toBottomOf="@id/timesLabel"/>
+
+			<TextView
+				android:id="@+id/whenceTV"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="12.3dp"
+				android:layout_marginTop="12dp"
+				android:background="@drawable/draw_rect_cyan_cr3"
+				android:paddingBottom="5dp"
+				android:paddingEnd="11.7dp"
+				android:paddingStart="11.7dp"
+				android:paddingTop="5dp"
+				android:text="@{item.whence()}"
+				android:textColor="#ffffff"
+				android:textSize="10sp"
+				app:layout_constraintStart_toEndOf="@id/eveningLabel"
+				app:layout_constraintTop_toBottomOf="@id/timesLabel"
+				tools:text="After Food"/>
+		</android.support.constraint.ConstraintLayout>
+	</FrameLayout>
+</layout>

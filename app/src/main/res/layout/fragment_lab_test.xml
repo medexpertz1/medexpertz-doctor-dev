@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".LabTestFragmentBinding">
+		<import type="android.view.View"/>
+		<import type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+
+		<variable name="status" type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+		<variable name="editLabTest" type="Boolean"/>
+		<variable name="editPosition" type="Integer"/>
+		<variable name="handler" type="com.medexpertz.medexpertzdoctor.prescription.LabTestFragment"/>
+		<variable name="labTest" type="com.medexpertz.medexpertzdoctor.prescription.LabTest"/>
+		<variable name="adapter" type="com.medexpertz.medexpertzdoctor.prescription.LabTestAdapter"/>
+	</data>
+
+	<android.support.v4.widget.NestedScrollView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true"
+		android:isScrollContainer="true">
+
+		<android.support.constraint.ConstraintLayout
+			android:layout_width="match_parent"
+			android:paddingBottom="24dp"
+			android:layout_height="match_parent">
+
+			<TextView
+				android:id="@+id/labTestLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_marginTop="16dp"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:text="@string/add_lab_test"
+				android:textColor="#282828"
+				android:textSize="14sp"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"/>
+
+			<TextView
+				android:id="@+id/titleTV"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="94dp"
+				android:fontFamily="@font/proxima_nova_bold"
+				android:text="@{labTest.testName}"
+				android:textColor="#282828"
+				android:textSize="14sp"
+				app:layout_constraintStart_toStartOf="@id/labTestLabel"
+				app:layout_constraintTop_toBottomOf="@id/labTestLabel"
+				tools:text="Blood test"/>
+
+			<android.support.v7.widget.AppCompatEditText
+				android:id="@+id/commentET"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:layout_marginTop="16dp"
+				android:background="@drawable/draw_rect_stroke_7f000000_r3"
+				android:enabled="@{status != Status.LOADING}"
+				android:hint="@string/comments"
+				android:paddingBottom="16dp"
+				android:paddingEnd="12dp"
+				android:paddingStart="12dp"
+				android:paddingTop="16dp"
+				android:textColor="#242424"
+				android:text="@={labTest.comments}"
+				android:textColorHint="#545454"
+				android:textSize="14sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="@id/titleTV"
+				app:layout_constraintTop_toBottomOf="@id/titleTV"/>
+
+			<android.support.v7.widget.AppCompatButton
+				android:id="@+id/addBtn"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="12dp"
+				android:layout_marginStart="12dp"
+				android:layout_marginTop="25dp"
+				android:enabled="@{status != Status.LOADING}"
+				android:fontFamily="@font/proxima_nova_bold"
+				android:onClick="@{()->handler.addLabTest(labTest)}"
+				android:text="@string/add"
+				app:backgroundTint="@color/colorPrimary"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/commentET"/>
+
+			<com.wang.avi.AVLoadingIndicatorView
+				style="@style/AVLoadingIndicatorView.Small"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="8dp"
+				android:stateLoading="@{status == Status.LOADING}"
+				app:indicatorColor="@color/white"
+				app:indicatorName="BallSpinFadeLoaderIndicator"
+				app:layout_constraintBottom_toBottomOf="@id/addBtn"
+				app:layout_constraintEnd_toEndOf="@id/addBtn"
+				app:layout_constraintTop_toTopOf="@id/addBtn"/>
+
+			<View
+				android:id="@+id/divider"
+				android:layout_width="0dp"
+				android:layout_height="0.7dp"
+				android:layout_marginTop="20dp"
+				android:background="#3c000000"
+				app:layout_constraintTop_toBottomOf="@id/addBtn"/>
+
+			<TextView
+				android:id="@+id/medicineLabel"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:background="#ebebeb"
+				android:fontFamily="@font/proxima_nova_bold"
+				android:padding="16dp"
+				android:text="@string/lab_tests"
+				android:textColor="#282828"
+				android:textSize="21.7sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/divider"
+				app:layout_goneMarginTop="94dp"/>
+
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/labTestRV"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:adapter="@{adapter}"
+				android:divider="@{true}"
+				android:nestedScrollEnabled="@{false}"
+				app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/medicineLabel"
+				tools:listitem="@layout/item_lab_test"/>
+
+			<android.support.v7.widget.AppCompatButton
+				android:id="@+id/doneBtn"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="12dp"
+				android:layout_marginStart="12dp"
+				android:layout_marginTop="25dp"
+				android:enabled="@{status != Status.LOADING}"
+				android:fontFamily="@font/proxima_nova_bold"
+				android:onClick="@{()->handler.apply()}"
+				android:text="@string/done"
+				app:backgroundTint="@color/colorPrimary"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/labTestRV"/>
+
+			<com.arlib.floatingsearchview.FloatingSearchView
+				android:id="@+id/searchET"
+				style="@style/SearchView"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:background="@drawable/draw_rect_stroke_7f000000_r3"
+				android:enabled="@{status != Status.LOADING}"
+				android:paddingBottom="16dp"
+				android:paddingEnd="12dp"
+				android:paddingStart="12dp"
+				android:paddingTop="16dp"
+				app:floatingSearch_close_search_on_keyboard_dismiss="true"
+				app:floatingSearch_dismissFocusOnItemSelection="true"
+				app:floatingSearch_searchBarMarginLeft="0dp"
+				app:floatingSearch_searchBarMarginRight="0dp"
+				app:floatingSearch_searchBarMarginTop="0dp"
+				app:floatingSearch_searchHint="@string/search_lab_test_here"
+				app:floatingSearch_showSearchKey="false"
+				app:floatingSearch_suggestionsListAnimDuration="250"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				tools:visibility="gone"
+				app:layout_constraintTop_toBottomOf="@id/labTestLabel"/>
+
+			<android.support.constraint.Group
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:visibility="@{editLabTest ? View.VISIBLE : View.GONE}"
+				app:constraint_referenced_ids="titleTV,commentET,addBtn,divider"/>
+		</android.support.constraint.ConstraintLayout>
+	</android.support.v4.widget.NestedScrollView>
+</layout>

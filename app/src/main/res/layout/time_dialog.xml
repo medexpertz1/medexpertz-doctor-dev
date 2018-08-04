@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/TimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_time"
+        android:layout_marginTop="50dp"
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:paddingRight="14dp"
+        android:paddingLeft="14dp"
+        android:gravity="center"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/draw_rect_stroke_7f000000_r3"
+        app:layout_constraintTop_toBottomOf="@+id/totimeTV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="50dp"/>
+   <TimePicker
+       android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"
+        app:layout_constraintTop_toBottomOf="@+id/TimeValue"></TimePicker>
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timePicker"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="50dp"
+        android:text="Ok"
+        android:background="@drawable/draw_rect_green_c3"
+        android:textAllCaps="true"/>
+</android.support.constraint.ConstraintLayout>

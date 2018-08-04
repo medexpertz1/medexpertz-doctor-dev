@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_gravity="start"
+	android:clickable="true"
+	android:focusable="true"
+	android:orientation="vertical">
+
+	<de.hdodenhof.circleimageview.CircleImageView
+		android:id="@+id/profile_image"
+		android:layout_width="96dp"
+		android:layout_height="96dp"
+		android:layout_marginStart="41.3dp"
+		android:layout_marginTop="42.7dp"
+		android:src="@mipmap/app_icon"/>
+
+	<TextView
+		android:id="@+id/profileTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="35dp"
+		android:fontFamily="@font/proxima_nova_semi_bold"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/profile"
+		android:textColor="#282828"
+		android:textSize="16sp"/>
+
+	<TextView
+		android:id="@+id/prescriptionTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/proxima_nova_semi_bold"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/write_prescription"
+		android:textColor="#282828"
+		android:textSize="16sp"
+		android:visibility="gone"/>
+
+	<TextView
+		android:id="@+id/termsTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/proxima_nova_semi_bold"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/terms_and_conditions"
+		android:textColor="#282828"
+		android:textSize="16sp"/>
+
+	<TextView
+		android:id="@+id/contactUsTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/proxima_nova_semi_bold"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/contact_us"
+		android:textColor="#282828"
+		android:textSize="16sp"/>
+	<TextView
+		android:id="@+id/sirebaseChatTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/proxima_nova_semi_bold"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/chatwith_patient"
+		android:textColor="#282828"
+		android:textSize="16sp"/>
+
+	<TextView
+		android:id="@+id/privacyTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/proxima_nova_semi_bold"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/privacy"
+		android:textColor="#282828"
+		android:textSize="16sp"/>
+
+	<TextView
+		android:id="@+id/shareTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/proxima_nova_semi_bold"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/share"
+		android:textColor="#282828"
+		android:textSize="16sp"/>
+
+
+
+	<TextView
+		android:id="@+id/timeSlotTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/proxima_nova_semi_bold"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/viewadd_timeslot"
+		android:textColor="#282828"
+		android:textSize="16sp" />
+	<TextView
+		android:id="@+id/weekDaysTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fontFamily="@font/proxima_nova_semi_bold"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/viewadd_weekdays"
+		android:textColor="#282828"
+		android:textSize="16sp" />
+
+	<View
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_weight="1" />
+
+	<TextView
+		android:id="@+id/logoutTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="20dp"
+		android:paddingBottom="12dp"
+		android:paddingEnd="0dp"
+		android:paddingStart="41.3dp"
+		android:paddingTop="12dp"
+		android:text="@string/logout"
+		android:textColor="#545454"
+		android:textSize="14sp"/>
+
+	<TextView
+		android:id="@+id/versionTV"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="4dp"
+		android:gravity="center"
+		android:textColor="#848484"
+		android:textSize="12sp"
+		tools:text="v1.5"/>
+</LinearLayout>

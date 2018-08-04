@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<data>
+		<variable name="handler" type="com.medexpertz.medexpertzdoctor.appointment.AppointmentActivity"/>
+		<variable name="adapter" type="com.medexpertz.medexpertzdoctor.appointment.ReasonAdapter"/>
+		<variable name="state" type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+	</data>
+
+	<android.support.constraint.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingBottom="30dp"
+		android:paddingTop="36dp">
+		<TextView
+			android:id="@+id/titleLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/proxima_nova_bold"
+			android:text="@string/cancel_title"
+			android:textColor="#282828"
+			android:textSize="16sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"/>
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/reasonRV"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:adapter="@{adapter}"
+			app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/titleLabel"
+			tools:listitem="@layout/item_reason"/>
+
+		<android.support.v7.widget.AppCompatButton
+			android:id="@+id/rejectBtn"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="24dp"
+			android:fontFamily="@font/proxima_nova_bold"
+			android:onClick="@{()->handler.onRejected()}"
+			android:text="@string/reject"
+			android:textColor="#ffffff"
+			android:textSize="16sp"
+			app:backgroundTint="@color/colorPrimary"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/reasonRV"/>
+	</android.support.constraint.ConstraintLayout>
+</layout>

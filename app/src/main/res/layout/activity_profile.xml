@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".ProfileActivityBinding">
+		<import type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+
+		<variable name="edit" type="Boolean"/>
+		<variable name="status" type="Status"/>
+		<variable name="doc" type="com.medexpertz.medexpertzdoctor.profile.Doctor"/>
+		<variable name="handler" type="com.medexpertz.medexpertzdoctor.profile.ProfileActivity"/>
+	</data>
+
+	<android.support.v4.widget.NestedScrollView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".profile.ProfileActivity">
+
+		<android.support.constraint.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:paddingEnd="16dp"
+			android:paddingStart="16dp"
+			android:paddingTop="16dp">
+
+			<ImageView
+				android:id="@+id/avatarIV"
+				android:layout_width="83.3dp"
+				android:layout_height="83.3dp"
+				android:contentDescription="@null"
+				android:error="@{@drawable/art_avatar_white_93dp}"
+				android:onClick="@{()->handler.onAvatar()}"
+				android:url="@{doc.profilePic}"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:src="@drawable/art_doctor_various_56dp"/>
+
+			<android.support.v7.widget.AppCompatEditText
+				android:id="@+id/nameTV"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="20dp"
+				android:background="@android:color/transparent"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:text="@={doc.name}"
+				android:textColor="#282828"
+				android:textSize="18sp"
+				android:enabled="@{edit}"
+				app:layout_constraintBottom_toTopOf="@+id/qualificationTV"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@+id/avatarIV"
+				app:layout_constraintTop_toTopOf="@+id/avatarIV"
+				app:layout_constraintVertical_chainStyle="packed"
+				tools:text="Dr. Shivraman Krishna"/>
+
+			<android.support.v7.widget.AppCompatEditText
+				android:id="@+id/qualificationTV"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="4dp"
+				android:background="@android:color/transparent"
+				android:drawablePadding="9dp"
+				android:drawableStart="@drawable/ic_qualification_grey_12dp"
+				android:enabled="@{edit}"
+				android:text="@={doc.education}"
+				android:textColor="#545454"
+				android:textSize="12sp"
+				app:layout_constraintBottom_toTopOf="@+id/languageTV"
+				app:layout_constraintStart_toStartOf="@+id/nameTV"
+				app:layout_constraintTop_toBottomOf="@+id/nameTV"
+				tools:text="M.B.B.S"/>
+
+			<TextView
+				android:id="@+id/languageTV"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="4dp"
+				android:drawablePadding="9dp"
+				android:drawableStart="@drawable/ic_language_grey_12dp"
+				android:onClick="@{()->handler.onLanguage()}"
+				android:text="@{doc.languages()}"
+				android:textColor="#545454"
+				android:textSize="12sp"
+				android:enabled="@{edit}"
+				app:layout_constraintBottom_toBottomOf="@+id/avatarIV"
+				app:layout_constraintStart_toStartOf="@+id/nameTV"
+				app:layout_constraintTop_toBottomOf="@+id/qualificationTV"
+				tools:text="English, Hindi, Kannada"/>
+
+			<TextView
+				android:id="@+id/experienceLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="36dp"
+				android:drawablePadding="10.3dp"
+				android:drawableStart="@drawable/ic_experience_grey_12dp"
+				android:text="@string/experience"
+				android:textColor="#545454"
+				android:textSize="12sp"
+				app:layout_constraintTop_toBottomOf="@+id/avatarIV"/>
+
+			<android.support.v7.widget.AppCompatEditText
+				android:id="@+id/experienceTV"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:background="@drawable/draw_line_bottom_7f191919"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:paddingBottom="8dp"
+				android:text="@={doc.experience}"
+				android:textColor="#282828"
+				android:textSize="16sp"
+				android:enabled="@{edit}"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/experienceLabel"
+				tools:text="9 Years of experience"/>
+
+			<TextView
+				android:id="@+id/feeLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:drawablePadding="10.3dp"
+				android:drawableStart="@drawable/ic_fee_grey_16dp"
+				android:text="@string/consultation_fee"
+				android:textColor="#545454"
+				android:textSize="12sp"
+				app:layout_constraintTop_toBottomOf="@+id/experienceTV"/>
+
+			<android.support.v7.widget.AppCompatEditText
+				android:id="@+id/feeTV"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:background="@drawable/draw_line_bottom_7f191919"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:paddingBottom="8dp"
+				android:enabled="@{edit}"
+				android:text="@={doc.consultationFees}"
+				android:textColor="#282828"
+				android:textSize="16sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/feeLabel"
+				tools:text="Rs.400"/>
+
+			<TextView
+				android:id="@+id/specializationLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:drawablePadding="14.3dp"
+				android:drawableStart="@drawable/ic_specialization_grey_12dp"
+				android:text="@string/specialization"
+				android:textColor="#545454"
+				android:textSize="12sp"
+				app:layout_constraintTop_toBottomOf="@+id/feeTV"/>
+
+			<TextView
+				android:id="@+id/specializationTV"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:background="@drawable/draw_line_bottom_7f191919"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:onClick="@{()->handler.onSpecialization()}"
+				android:paddingBottom="8dp"
+				android:text="@{doc.displaySpecializations()}"
+				android:textColor="#282828"
+				android:textSize="16sp"
+				android:enabled="@{edit}"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/specializationLabel"
+				tools:text="Physician, Neurologist"/>
+
+			<TextView
+				android:id="@+id/verificationLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:drawablePadding="10.7dp"
+				android:drawableStart="@drawable/ic_check_circle_545454_16dp"
+				android:text="@string/verification_done_for"
+				android:textColor="#545454"
+				android:textSize="12sp"
+				app:layout_constraintTop_toBottomOf="@+id/specializationTV"/>
+
+			<android.support.v7.widget.AppCompatEditText
+				android:id="@+id/verificationTV"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:background="@drawable/draw_line_bottom_7f191919"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:paddingBottom="8dp"
+				android:text="@={doc.licenceDocument}"
+				android:textColor="#282828"
+				android:textSize="16sp"
+				android:enabled="@{edit}"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/verificationLabel"
+				tools:text="Medical License"/>
+
+			<com.wang.avi.AVLoadingIndicatorView
+				android:id="@+id/loaderLIV"
+				style="@style/AVLoadingIndicatorView.Small"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:stateLoading="@{status == Status.LOADING}"
+				app:indicatorColor="@color/colorPrimary"
+				app:indicatorName="BallSpinFadeLoaderIndicator"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"/>
+
+		</android.support.constraint.ConstraintLayout>
+	</android.support.v4.widget.NestedScrollView>
+</layout>

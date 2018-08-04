@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".TimeSlotItemBinding">
+		<variable name="item" type="com.medexpertz.medexpertzdoctor.appointment.TimeSlot"/>
+	</data>
+
+	<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="11dp"
+		android:layout_marginTop="22dp"
+		android:background="@drawable/draw_rect_0c000000_r4"
+		android:padding="8dp"
+		android:text="@{item.time}"
+		android:textColor="@color/selector_primary_242424"
+		android:textSize="14sp"
+		tools:text="03:00 PM"/>
+</layout>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".ChangeSlotActivityBinding">
+		<import type="android.view.View"/>
+		<import type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+
+		<variable name="appointment" type="com.medexpertz.medexpertzdoctor.appointment.Appointment"/>
+		<variable name="handler" type="com.medexpertz.medexpertzdoctor.appointment.ChangeSlotActivity"/>
+		<variable name="date" type="com.medexpertz.medexpertzdoctor.appointment.DateRequest"/>
+		<variable name="adapter" type="com.medexpertz.medexpertzdoctor.appointment.TimeSlotAdapter"/>
+		<variable name="status" type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+	</data>
+
+	<android.support.constraint.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#f2f2f2"
+		tools:context=".appointment.ChangeSlotActivity">
+
+		<android.support.v7.widget.CardView
+			android:id="@+id/dateCV"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="23dp"
+			app:cardCornerRadius="0dp"
+			app:cardElevation="6dp"
+			app:contentPadding="16dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+
+			<android.support.constraint.ConstraintLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<TextView
+					android:id="@+id/dateLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/date"
+					android:textColor="#545454"
+					android:textSize="12sp"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"/>
+
+				<TextView
+					android:id="@+id/dateTV"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:fontFamily="@font/proxima_nova_semi_bold"
+					android:text="@{appointment.displayDate()}"
+					android:textColor="#282828"
+					android:textSize="16sp"
+					app:layout_constraintTop_toBottomOf="@id/dateLabel"
+					tools:text="07/12/2018"/>
+
+				<View
+					android:id="@+id/divider1"
+					android:layout_width="0.7dp"
+					android:layout_height="0dp"
+					android:background="#7f000000"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"/>
+
+				<TextView
+					android:id="@+id/timeLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="42dp"
+					android:text="@string/time"
+					android:textColor="#545454"
+					android:textSize="12sp"
+					app:layout_constraintStart_toEndOf="@id/divider1"/>
+
+				<TextView
+					android:id="@+id/timeTV"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:fontFamily="@font/proxima_nova_semi_bold"
+					android:text="@{appointment.appointmentTime}"
+					android:textAllCaps="true"
+					android:textColor="#282828"
+					android:textSize="16sp"
+					app:layout_constraintStart_toStartOf="@id/timeLabel"
+					app:layout_constraintTop_toBottomOf="@id/timeLabel"
+					tools:text="07:00 PM"/>
+			</android.support.constraint.ConstraintLayout>
+
+		</android.support.v7.widget.CardView>
+
+		<TextView
+			android:id="@+id/availableSlotTV"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="34dp"
+			android:fontFamily="@font/proxima_nova_bold"
+			android:text="@string/available_slot"
+			android:textColor="#282828"
+			android:textSize="18sp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/dateCV"/>
+
+		<View
+			android:id="@+id/dateBG"
+			android:layout_width="0dp"
+			android:layout_height="44dp"
+			android:layout_marginTop="18dp"
+			android:background="#1917845d"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/availableSlotTV"/>
+
+		<TextView
+			android:id="@+id/availableDateTV"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/proxima_nova_semi_bold"
+			android:text="@{date.displayDate()}"
+			android:textColor="#282828"
+			android:textSize="20sp"
+			app:layout_constraintBottom_toBottomOf="@id/dateBG"
+			app:layout_constraintEnd_toEndOf="@id/dateBG"
+			app:layout_constraintStart_toStartOf="@id/dateBG"
+			app:layout_constraintTop_toTopOf="@id/dateBG"
+			tools:text="18 Feb 2018"/>
+
+		<ImageView
+			android:id="@+id/prevIV"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="36dp"
+			android:contentDescription="@null"
+			android:onClick="@{()->handler.onPreviousDate(date)}"
+			app:layout_constraintBottom_toBottomOf="@id/dateBG"
+			app:layout_constraintEnd_toStartOf="@id/availableDateTV"
+			app:layout_constraintTop_toTopOf="@id/dateBG"
+			app:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp"/>
+
+		<ImageView
+			android:id="@+id/nextIV"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="36dp"
+			android:contentDescription="@null"
+			android:onClick="@{()->handler.onNextDate(date)}"
+			app:layout_constraintBottom_toBottomOf="@id/dateBG"
+			app:layout_constraintStart_toEndOf="@id/availableDateTV"
+			app:layout_constraintTop_toTopOf="@id/dateBG"
+			app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+		<android.support.v7.widget.RecyclerView
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:adapter="@{adapter}"
+			app:layoutManager="android.support.v7.widget.GridLayoutManager"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/dateBG"
+			app:spanCount="4"
+			tools:listitem="@layout/item_time_slot"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/no_available_time_slots"
+			android:textColor="#848484"
+			android:visibility="@{adapter.itemCount == 0 ? View.VISIBLE : View.GONE}"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/dateBG"/>
+
+		<com.wang.avi.AVLoadingIndicatorView
+			android:id="@+id/loaderLIV"
+			style="@style/AVLoadingIndicatorView.Small"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginTop="16dp"
+			android:stateLoading="@{status == Status.LOADING}"
+			app:indicatorColor="@color/colorPrimary"
+			app:indicatorName="BallSpinFadeLoaderIndicator"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/dateBG"/>
+	</android.support.constraint.ConstraintLayout>
+</layout>

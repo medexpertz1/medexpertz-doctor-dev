@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="colorPrimary">#17845d</color>
+	<color name="colorPrimaryDark">#13704f</color>
+	<color name="colorAccent">#17845d</color>
+	<color name="white">#FFFFFF</color>
+	<color name="black">#7f000000</color>
+	<color name="color_black">#90000000</color>
+	<color name="color_black_read">#50000000</color>
+	<color name="online_green">#15e711</color>
+	<color name="hintColor">#737272</color>
+	<color name="chat_bubble_left_bg">#f7f3f3</color>
+	<color name="chat_bubble_right_bg">#c5f2c5</color>
+</resources>

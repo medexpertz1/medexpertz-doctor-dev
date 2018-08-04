@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".NotificationItemBinding">
+		<variable name="item" type="com.medexpertz.medexpertzdoctor.notification.Notification"/>
+		<variable name="handler"
+			type="com.medexpertz.medexpertzdoctor.notification.NotificationAdapter.OnItemClickListener"/>
+	</data>
+
+	<android.support.constraint.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:onClick="@{()->handler.onNotification(item)}">
+
+		<ImageView
+			android:id="@+id/avatarIV"
+			android:layout_width="36dp"
+			android:layout_height="36dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:contentDescription="@null"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:src="@drawable/art_doctor_various_56dp"/>
+
+		<TextView
+			android:id="@+id/contentTV"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="34dp"
+			android:layout_marginStart="12dp"
+			android:textColor="#282828"
+			android:textSize="12sp"
+			android:text="@{item.notification.notification}"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/avatarIV"
+			app:layout_constraintTop_toTopOf="@id/avatarIV"
+			tools:text="Devendra M prasad is simply dummy text of the printing and typesetting industry."/>
+
+		<TextView
+			android:id="@+id/timeTV"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="4dp"
+			android:textColor="#848484"
+			android:textSize="10sp"
+			android:text="@{item.notification.createdAt}"
+			app:layout_constraintStart_toStartOf="@id/contentTV"
+			app:layout_constraintTop_toBottomOf="@id/contentTV"
+			tools:text="yesterday 2:35 PM"/>
+
+		<View
+			android:layout_width="0dp"
+			android:layout_height="0.7dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:background="#3C000000"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/timeTV"/>
+	</android.support.constraint.ConstraintLayout>
+</layout>

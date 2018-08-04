@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".PrescriptionFragmentBinding">
+		<import type="android.view.View"/>
+		<import type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+
+		<variable name="status" type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+		<variable name="editPrescription" type="Boolean"/>
+		<variable name="editPosition" type="Integer"/>
+		<variable name="handler" type="com.medexpertz.medexpertzdoctor.prescription.PrescriptionFragment"/>
+		<variable name="prescription" type="com.medexpertz.medexpertzdoctor.prescription.Prescription"/>
+		<variable name="adapter" type="com.medexpertz.medexpertzdoctor.prescription.PrescriptionAdapter"/>
+	</data>
+
+	<android.support.v4.widget.NestedScrollView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true"
+		android:isScrollContainer="true">
+
+		<android.support.constraint.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<TextView
+				android:id="@+id/addMedicineLabel"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:layout_marginStart="16dp"
+				android:layout_marginTop="16dp"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:text="@string/add_medicine"
+				android:textColor="#282828"
+				android:textSize="14sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"/>
+
+			<TextView
+				android:id="@+id/titleTV"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/proxima_nova_bold"
+				android:text="@{prescription.medicineName}"
+				android:textColor="#282828"
+				android:textSize="14sp"
+				app:layout_constraintBottom_toBottomOf="@+id/countACS"
+				app:layout_constraintStart_toStartOf="@+id/addMedicineLabel"
+				app:layout_constraintTop_toTopOf="@+id/countACS"
+				tools:text="Aspirin 250g"/>
+
+			<android.support.v7.widget.AppCompatSpinner
+				android:id="@+id/countACS"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="94dp"
+				android:enabled="@{status != Status.LOADING}"
+				android:entries="@array/counts"
+				android:onItemSelected="@{(parent, view, position, id) -> prescription.setQty(position)}"
+				android:selection="@{prescription.qty}"
+				app:layout_constraintEnd_toEndOf="@+id/addMedicineLabel"
+				app:layout_constraintTop_toBottomOf="@+id/addMedicineLabel"/>
+
+			<TextView
+				android:id="@+id/tabletLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:text="@string/no_of_tablet"
+				android:textColor="#282828"
+				android:textSize="12sp"
+				app:layout_constraintBottom_toBottomOf="@+id/countACS"
+				app:layout_constraintEnd_toStartOf="@+id/countACS"
+				app:layout_constraintTop_toTopOf="@+id/countACS"/>
+
+			<TextView
+				android:id="@+id/morningLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="24dp"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:text="@string/morning"
+				android:textColor="#282828"
+				android:textSize="14sp"
+				app:layout_constraintStart_toStartOf="@+id/addMedicineLabel"
+				app:layout_constraintTop_toBottomOf="@+id/countACS"/>
+
+			<TextView
+				android:id="@+id/noonLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="24dp"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:text="@string/afternoon"
+				android:textColor="#282828"
+				android:textSize="14sp"
+				app:layout_constraintStart_toStartOf="@+id/noonACS"
+				app:layout_constraintTop_toBottomOf="@+id/countACS"/>
+
+			<TextView
+				android:id="@+id/eveningLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/proxima_nova_semi_bold"
+				android:text="@string/evening"
+				android:textColor="#282828"
+				android:textSize="14sp"
+				app:layout_constraintStart_toStartOf="@+id/eveningACS"
+				app:layout_constraintTop_toTopOf="@+id/morningLabel"/>
+
+			<android.support.v7.widget.AppCompatSpinner
+				android:id="@+id/morningACS"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:enabled="@{status != Status.LOADING}"
+				android:entries="@array/counts_0_1"
+				android:onItemSelected="@{(parent, view, position, id) -> prescription.setMorning(position)}"
+				android:selection="@{prescription.morning}"
+				app:layout_constraintEnd_toStartOf="@+id/noonACS"
+				app:layout_constraintHorizontal_chainStyle="spread_inside"
+				app:layout_constraintStart_toStartOf="@+id/addMedicineLabel"
+				app:layout_constraintTop_toTopOf="@+id/eveningACS"/>
+
+			<android.support.v7.widget.AppCompatSpinner
+				android:id="@+id/noonACS"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:enabled="@{status != Status.LOADING}"
+				android:entries="@array/counts_0_1"
+				android:onItemSelected="@{(parent, view, position, id) -> prescription.setAfternoon(position)}"
+				android:selection="@{prescription.afternoon}"
+				app:layout_constraintEnd_toStartOf="@+id/eveningACS"
+				app:layout_constraintStart_toEndOf="@+id/morningACS"
+				app:layout_constraintTop_toTopOf="@+id/eveningACS"/>
+
+			<android.support.v7.widget.AppCompatSpinner
+				android:id="@+id/eveningACS"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:enabled="@{status != Status.LOADING}"
+				android:entries="@array/counts_0_1"
+				android:onItemSelected="@{(parent, view, position, id) -> prescription.setEvening(position)}"
+				android:selection="@{prescription.evening}"
+				app:layout_constraintEnd_toEndOf="@+id/addMedicineLabel"
+				app:layout_constraintStart_toEndOf="@+id/noonACS"
+				app:layout_constraintTop_toBottomOf="@+id/morningLabel"/>
+
+			<android.support.v7.widget.AppCompatCheckBox
+				android:id="@+id/beforeCB"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="24dp"
+				android:checked="@{prescription.beforeFood == 1}"
+				android:enabled="@{status != Status.LOADING}"
+				android:onCheckedChanged="@{(buttonView, isChecked) -> handler.whenceChecked(buttonView, isChecked, prescription)}"
+				android:text="@string/before_food"
+				android:textColor="#545454"
+				android:textSize="14sp"
+				app:layout_constraintEnd_toStartOf="@+id/afterCB"
+				app:layout_constraintHorizontal_chainStyle="spread_inside"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/morningACS"/>
+
+			<android.support.v7.widget.AppCompatCheckBox
+				android:id="@+id/afterCB"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:checked="@{prescription.afterFood == 1}"
+				android:enabled="@{status != Status.LOADING}"
+				android:onCheckedChanged="@{(buttonView, isChecked) -> handler.whenceChecked(buttonView, isChecked, prescription)}"
+				android:text="@string/after_food"
+				android:textColor="#545454"
+				android:textSize="14sp"
+				app:layout_constraintEnd_toStartOf="@+id/dayACS"
+				app:layout_constraintStart_toEndOf="@+id/beforeCB"
+				app:layout_constraintTop_toTopOf="@+id/beforeCB"/>
+
+            <TextView
+                android:id="@+id/noDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/eveningACS"
+                android:text="No.of days"
+                android:layout_marginTop="15dp"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/afterCB"
+                app:layout_constraintEnd_toEndOf="@id/addMedicineLabel"/>
+
+			<android.support.v7.widget.AppCompatSpinner
+				android:id="@+id/dayACS"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:enabled="@{status != Status.LOADING}"
+				android:entries="@array/counts"
+				android:onItemSelected="@{(parent, view, position, id) -> prescription.setNoOfDays(position)}"
+				android:selection="@{prescription.noOfDays}"
+				app:layout_constraintEnd_toEndOf="@+id/addMedicineLabel"
+				app:layout_constraintStart_toEndOf="@+id/afterCB"
+				app:layout_constraintTop_toBottomOf="@+id/noDays"/>
+
+			<android.support.v7.widget.AppCompatButton
+				android:id="@+id/addBtn"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="12dp"
+				android:layout_marginStart="12dp"
+				android:layout_marginTop="25dp"
+				android:enabled="@{status != Status.LOADING}"
+				android:fontFamily="@font/proxima_nova_bold"
+				android:onClick="@{()->handler.addPrescription(prescription)}"
+				android:text="@string/add"
+				app:backgroundTint="@color/colorPrimary"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/dayACS"/>
+
+			<com.wang.avi.AVLoadingIndicatorView
+				style="@style/AVLoadingIndicatorView.Small"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="8dp"
+				android:stateLoading="@{status == Status.LOADING}"
+				app:indicatorColor="@color/white"
+				app:indicatorName="BallSpinFadeLoaderIndicator"
+				app:layout_constraintBottom_toBottomOf="@+id/addBtn"
+				app:layout_constraintEnd_toEndOf="@+id/addBtn"
+				app:layout_constraintTop_toTopOf="@+id/addBtn"/>
+
+			<View
+				android:id="@+id/divider"
+				android:layout_width="0dp"
+				android:layout_height="0.7dp"
+				android:layout_marginTop="20dp"
+				android:background="#3c000000"
+				app:layout_constraintTop_toBottomOf="@+id/addBtn"/>
+
+			<TextView
+				android:id="@+id/medicineLabel"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:background="#ebebeb"
+				android:fontFamily="@font/proxima_nova_bold"
+				android:padding="16dp"
+				android:text="@string/medicine"
+				android:textColor="#282828"
+				android:textSize="21.7sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/divider"
+				app:layout_goneMarginTop="94dp"/>
+
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/prescriptionRV"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:adapter="@{adapter}"
+				android:divider="@{true}"
+				android:nestedScrollEnabled="@{false}"
+				app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/medicineLabel"
+				tools:listitem="@layout/item_prescription"/>
+
+			<android.support.v7.widget.AppCompatButton
+				android:id="@+id/doneBtn"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="40dp"
+				android:layout_marginEnd="12dp"
+				android:layout_marginStart="12dp"
+				android:onClick="@{()->handler.apply()}"
+				android:layout_marginTop="25dp"
+				android:enabled="@{status != Status.LOADING}"
+				android:fontFamily="@font/proxima_nova_bold"
+				android:text="@string/done"
+				app:backgroundTint="@color/colorPrimary"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/prescriptionRV"/>
+
+			<com.arlib.floatingsearchview.FloatingSearchView
+				android:id="@+id/searchET"
+				style="@style/SearchView"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:background="@drawable/draw_rect_stroke_7f000000_r3"
+				android:enabled="@{status != Status.LOADING}"
+				android:paddingBottom="16dp"
+				android:paddingEnd="12dp"
+				android:paddingStart="12dp"
+				android:paddingTop="16dp"
+				app:floatingSearch_close_search_on_keyboard_dismiss="true"
+				app:floatingSearch_dismissFocusOnItemSelection="true"
+				app:floatingSearch_searchBarMarginLeft="0dp"
+				app:floatingSearch_searchBarMarginRight="0dp"
+				app:floatingSearch_searchBarMarginTop="0dp"
+				app:floatingSearch_searchHint="@string/search_medicine_here"
+				app:floatingSearch_showSearchKey="false"
+				app:floatingSearch_suggestionsListAnimDuration="250"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/addMedicineLabel"/>
+
+			<android.support.constraint.Group
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:visibility="@{editPrescription ? View.VISIBLE : View.GONE}"
+				app:constraint_referenced_ids="titleTV,countACS,tabletLabel,morningLabel,noonLabel,eveningLabel,morningACS,noonACS,eveningACS,beforeCB,afterCB,dayACS,addBtn,divider"/>
+		</android.support.constraint.ConstraintLayout>
+	</android.support.v4.widget.NestedScrollView>
+</layout>

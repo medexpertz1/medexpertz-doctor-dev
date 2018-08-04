@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".AppointmentActivityBinding">
+		<import type="android.view.View"/>
+		<import type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+		<variable name="appointment" type="com.medexpertz.medexpertzdoctor.appointment.Appointment"/>
+		<variable name="handler" type="com.medexpertz.medexpertzdoctor.appointment.AppointmentActivity"/>
+		<variable name="state" type="Status"/>
+	</data>
+
+	<com.sothree.slidinguppanel.SlidingUpPanelLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/slidingUPL"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="bottom"
+		app:umanoFadeColor="#7f000000"
+		app:umanoInitialState="hidden"
+		app:umanoPanelHeight="0dp"
+		app:umanoShadowHeight="4dp">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+			<android.support.design.widget.AppBarLayout
+				android:id="@+id/appbar"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:theme="@style/AppTheme.AppBarOverlay">
+
+				<android.support.v7.widget.Toolbar
+					android:id="@+id/toolbar"
+					android:layout_width="match_parent"
+					android:layout_height="?attr/actionBarSize"
+					android:background="?attr/colorPrimary"
+					app:contentInsetLeft="0dp"
+					app:contentInsetStart="0dp"
+					app:contentInsetStartWithNavigation="0dp"
+					app:logo="@{appointment.profilePic}"
+					app:popupTheme="@style/AppTheme.PopupOverlay"
+					app:subtitle="@{appointment.mobileNo}"
+					app:subtitleTextAppearance="@style/SubtitleTextAppearance"
+					app:title="@{appointment.patientName}"
+					app:titleTextAppearance="@style/TitleTextAppearance"/>
+			</android.support.design.widget.AppBarLayout>
+
+			<android.support.v4.widget.NestedScrollView
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				tools:context=".appointment.AppointmentActivity">
+
+				<android.support.constraint.ConstraintLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:padding="12dp">
+
+					<android.support.v7.widget.CardView
+						android:id="@+id/bookForCV"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginEnd="4dp"
+						android:layout_marginStart="4dp"
+						app:contentPadding="16dp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toTopOf="parent">
+						<android.support.constraint.ConstraintLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content">
+							<TextView
+								android:id="@+id/bookForLabel"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="@string/book_for"
+								android:textColor="#545454"
+								android:textSize="12sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginTop="8dp"
+								android:fontFamily="@font/proxima_nova_semi_bold"
+								android:text="@{appointment.bookedForRelation}"
+								android:textColor="#282828"
+								android:textSize="16sp"
+								app:layout_constraintTop_toBottomOf="@+id/bookForLabel"
+								tools:text="Sandita Prasad "/>
+
+							<TextView
+								android:id="@+id/viewDocumentTV"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/proxima_nova_semi_bold"
+								android:paddingBottom="8dp"
+								android:paddingStart="8dp"
+								android:paddingTop="8dp"
+								android:text="@string/view_document"
+								android:textColor="#17845d"
+								android:textSize="12sp"
+								app:layout_constraintBottom_toBottomOf="parent"
+								app:layout_constraintEnd_toEndOf="parent"
+								app:layout_constraintTop_toTopOf="parent"/>
+						</android.support.constraint.ConstraintLayout>
+
+					</android.support.v7.widget.CardView>
+
+					<android.support.v7.widget.CardView
+						android:id="@+id/ageCV"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginEnd="4dp"
+						android:layout_marginStart="4dp"
+						android:layout_marginTop="14dp"
+						app:contentPadding="16dp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toBottomOf="@+id/bookForCV">
+
+						<android.support.constraint.ConstraintLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content">
+
+							<TextView
+								android:id="@+id/ageLabel"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="@string/age"
+								android:textColor="#545454"
+								android:textSize="12sp"
+								app:layout_constraintStart_toStartOf="parent"
+								app:layout_constraintTop_toTopOf="parent"/>
+
+							<TextView
+								android:id="@+id/ageTV"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginTop="10dp"
+								android:fontFamily="@font/proxima_nova_semi_bold"
+								android:text="@{@plurals/format_age(appointment.displayAge(), appointment.displayAge())}"
+								android:textColor="#282828"
+								android:textSize="16sp"
+								app:layout_constraintTop_toBottomOf="@+id/ageLabel"
+								tools:text="26 Years"/>
+
+							<View
+								android:id="@+id/divider"
+								android:layout_width="0.7dp"
+								android:layout_height="0dp"
+								android:background="#7f000000"
+								app:layout_constraintBottom_toBottomOf="parent"
+								app:layout_constraintEnd_toEndOf="parent"
+								app:layout_constraintStart_toStartOf="parent"
+								app:layout_constraintTop_toTopOf="parent"/>
+
+							<TextView
+								android:id="@+id/genderLabel"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginStart="42dp"
+								android:text="@string/gender"
+								android:textColor="#545454"
+								android:textSize="12sp"
+								app:layout_constraintStart_toEndOf="@+id/divider"/>
+
+							<TextView
+								android:id="@+id/genderTV"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginTop="10dp"
+								android:fontFamily="@font/proxima_nova_semi_bold"
+								android:text="@{appointment.gender}"
+								android:textColor="#282828"
+								android:textSize="16sp"
+								app:layout_constraintStart_toStartOf="@+id/genderLabel"
+								app:layout_constraintTop_toBottomOf="@+id/genderLabel"
+								tools:text="Female"/>
+						</android.support.constraint.ConstraintLayout>
+
+					</android.support.v7.widget.CardView>
+
+					<android.support.v7.widget.CardView
+						android:id="@+id/dateCV"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginEnd="4dp"
+						android:layout_marginStart="4dp"
+						android:layout_marginTop="14dp"
+						app:contentPadding="16dp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toBottomOf="@+id/ageCV">
+
+						<android.support.constraint.ConstraintLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content">
+
+							<TextView
+								android:id="@+id/dateLabel"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="@string/date"
+								android:textColor="#545454"
+								android:textSize="12sp"
+								app:layout_constraintStart_toStartOf="parent"
+								app:layout_constraintTop_toTopOf="parent"/>
+
+							<TextView
+								android:id="@+id/dateTV"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginTop="10dp"
+								android:fontFamily="@font/proxima_nova_semi_bold"
+								android:text="@{appointment.displayDate()}"
+								android:textColor="#282828"
+								android:textSize="16sp"
+								app:layout_constraintTop_toBottomOf="@+id/dateLabel"
+								tools:text="07/12/2018"/>
+
+							<View
+								android:id="@+id/divider1"
+								android:layout_width="0.7dp"
+								android:layout_height="0dp"
+								android:background="#7f000000"
+								app:layout_constraintBottom_toBottomOf="parent"
+								app:layout_constraintEnd_toEndOf="parent"
+								app:layout_constraintStart_toStartOf="parent"
+								app:layout_constraintTop_toTopOf="parent"/>
+
+							<TextView
+								android:id="@+id/timeLabel"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginStart="42dp"
+								android:text="@string/time"
+								android:textColor="#545454"
+								android:textSize="12sp"
+								app:layout_constraintStart_toEndOf="@+id/divider1"/>
+
+							<TextView
+								android:id="@+id/timeTV"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginTop="10dp"
+								android:fontFamily="@font/proxima_nova_semi_bold"
+								android:text="@{appointment.appointmentTime}"
+								android:textAllCaps="true"
+								android:textColor="#282828"
+								android:textSize="16sp"
+								app:layout_constraintStart_toStartOf="@+id/timeLabel"
+								app:layout_constraintTop_toBottomOf="@+id/timeLabel"
+								tools:text="07:00 PM"/>
+						</android.support.constraint.ConstraintLayout>
+
+					</android.support.v7.widget.CardView>
+
+					<android.support.v7.widget.CardView
+						android:id="@+id/symptomsCV"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="16dp"
+						app:cardUseCompatPadding="true"
+						app:contentPadding="16dp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toBottomOf="@+id/dateCV">
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="vertical">
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="@string/symptoms"
+								android:textColor="#545454"
+								android:textSize="12sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginTop="16dp"
+								android:fontFamily="@font/proxima_nova_semi_bold"
+								android:text="@{appointment.symptomsSummary}"
+								android:textColor="#282828"
+								android:textSize="16sp"
+								tools:text="@string/lorem_ipsum"/>
+						</LinearLayout>
+
+					</android.support.v7.widget.CardView>
+
+					<android.support.v7.widget.CardView
+						android:id="@+id/medicalConditionCV"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="16dp"
+						app:cardUseCompatPadding="true"
+						app:contentPadding="16dp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toBottomOf="@+id/symptomsCV">
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="vertical">
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="@string/medical_condition"
+								android:textColor="#545454"
+								android:textSize="12sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginTop="16dp"
+								android:fontFamily="@font/proxima_nova_semi_bold"
+								android:text="@{appointment.healthIssues}"
+								android:textColor="#282828"
+								android:textSize="16sp"
+								tools:text="@string/lorem_ipsum"/>
+						</LinearLayout>
+
+					</android.support.v7.widget.CardView>
+
+					<android.support.v7.widget.CardView
+						android:id="@+id/allergiesCV"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="16dp"
+						app:cardUseCompatPadding="true"
+						app:contentPadding="16dp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toBottomOf="@+id/medicalConditionCV">
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="vertical">
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="@string/allergies"
+								android:textColor="#545454"
+								android:textSize="12sp"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginTop="16dp"
+								android:fontFamily="@font/proxima_nova_semi_bold"
+								android:text="@{appointment.allergicMedicine}"
+								android:textColor="#282828"
+								android:textSize="16sp"
+								tools:text="@string/lorem_ipsum"/>
+						</LinearLayout>
+
+					</android.support.v7.widget.CardView>
+
+					<TextView
+						android:id="@+id/leftTV"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginEnd="9dp"
+						android:layout_marginStart="4dp"
+						android:layout_marginTop="24dp"
+						android:background="@drawable/draw_rect_17845d_r3"
+						android:enabled="@{state != Status.LOADING}"
+						android:fontFamily="@font/proxima_nova_bold"
+						android:gravity="center"
+						android:onClick="@{()->handler.onLeft()}"
+						android:padding="16dp"
+						android:text="@{appointment.getAction()}"
+						android:textColor="#ffffff"
+						android:textSize="16sp"
+						app:layout_constraintEnd_toStartOf="@+id/rightTV"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toBottomOf="@+id/videoTV"
+						tools:text="Accept"/>
+
+					<com.wang.avi.AVLoadingIndicatorView
+						android:id="@+id/leftLI"
+						style="@style/AVLoadingIndicatorView.Small"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginEnd="8dp"
+						android:stateLoading="@{state == Status.LOADING}"
+						app:indicatorColor="@color/white"
+						app:indicatorName="BallSpinFadeLoaderIndicator"
+						app:layout_constraintBottom_toBottomOf="@+id/leftTV"
+						app:layout_constraintEnd_toEndOf="@+id/leftTV"
+						app:layout_constraintTop_toTopOf="@+id/leftTV"/>
+
+					<TextView
+						android:id="@+id/rightTV"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginEnd="4dp"
+						android:layout_marginStart="9dp"
+						android:background="@drawable/draw_rect_stroke_17845d_r3"
+						android:enabled="@{state != Status.LOADING}"
+						android:fontFamily="@font/proxima_nova_bold"
+						android:gravity="center"
+						android:onClick="@{()->handler.onReject()}"
+						android:padding="16dp"
+						android:text="@string/reject"
+						android:textColor="#17845d"
+						android:textSize="16sp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toEndOf="@+id/leftTV"
+						app:layout_constraintTop_toTopOf="@+id/leftTV"/>
+
+					<com.wang.avi.AVLoadingIndicatorView
+						android:id="@+id/rightLI"
+						style="@style/AVLoadingIndicatorView.Small"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginEnd="8dp"
+						android:stateLoading="@{state == Status.LOADING}"
+						app:indicatorColor="@color/colorPrimary"
+						app:indicatorName="BallSpinFadeLoaderIndicator"
+						app:layout_constraintBottom_toBottomOf="@+id/rightTV"
+						app:layout_constraintEnd_toEndOf="@+id/rightTV"
+						app:layout_constraintTop_toTopOf="@+id/rightTV"/>
+
+					<TextView
+						android:id="@+id/videoTV"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="24dp"
+						android:contentDescription="@null"
+						android:drawablePadding="16dp"
+						android:drawableTop="@drawable/ic_video_green_68dp"
+						android:gravity="center"
+						android:onClick="@{()->handler.onVideoCall(appointment)}"
+						android:text="@string/video"
+						android:textColor="#282828"
+						android:textSize="12sp"
+						app:layout_constraintEnd_toStartOf="@+id/audioTV"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toBottomOf="@+id/allergiesCV"/>
+
+					<TextView
+						android:id="@+id/audioTV"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:contentDescription="@null"
+						android:drawablePadding="16dp"
+						android:drawableTop="@drawable/ic_lab"
+						android:gravity="center"
+						android:onClick="@{()->handler.onAudioCall(appointment)}"
+						android:text="@string/lab_tests"
+						android:textColor="#282828"
+						android:textSize="12sp"
+						app:layout_constraintEnd_toStartOf="@+id/prescriptionTV"
+						app:layout_constraintStart_toEndOf="@+id/videoTV"
+						app:layout_constraintTop_toTopOf="@+id/videoTV"/>
+
+					<TextView
+						android:id="@+id/prescriptionTV"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:contentDescription="@null"
+						android:drawablePadding="16dp"
+						android:drawableTop="@drawable/ic_prescription_green_68dp"
+						android:gravity="center"
+						android:onClick="@{()->handler.onPrescription(appointment)}"
+						android:text="@string/write_prescription"
+						android:textColor="#282828"
+						android:textSize="12sp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toEndOf="@+id/audioTV"
+						app:layout_constraintTop_toTopOf="@+id/videoTV"/>
+
+					<android.support.constraint.Group
+						android:layout_width="0dp"
+						android:layout_height="0dp"
+						android:visibility="@{appointment.appointmentStatus &lt; 4 ? View.VISIBLE : View.GONE}"
+						app:constraint_referenced_ids="leftTV,rightTV"/>
+
+					<android.support.constraint.Group
+						android:layout_width="0dp"
+						android:layout_height="0dp"
+						android:visibility="@{appointment.appointmentStatus == 3 ? View.VISIBLE : View.GONE}"
+						app:constraint_referenced_ids="videoTV,audioTV,prescriptionTV"/>
+				</android.support.constraint.ConstraintLayout>
+			</android.support.v4.widget.NestedScrollView>
+		</LinearLayout>
+
+		<include
+			android:id="@+id/reason"
+			layout="@layout/reject_reason"
+			app:handler="@{handler}"/>
+	</com.sothree.slidinguppanel.SlidingUpPanelLayout>
+</layout>

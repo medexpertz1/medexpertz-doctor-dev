@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".CountryItemBinding">
+		<variable name="country" type="com.medexpertz.medexpertzdoctor.auth.Country"/>
+		<variable name="listener" type="com.medexpertz.medexpertzdoctor.auth.CountryListAdapter.OnCountryItemClick"/>
+	</data>
+
+	<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/draw_line_bottom_1e000000"
+		android:fontFamily="@font/ubuntu_medium"
+		android:onClick="@{() -> listener.onCountry(country)}"
+		android:paddingBottom="24.7dp"
+		android:paddingEnd="30dp"
+		android:paddingStart="21.7dp"
+		android:paddingTop="23.3dp"
+		android:text="@{@string/format_country(country.dialCode, country.countryName)}"
+		android:textColor="#282828"
+		android:textSize="18.3sp"
+		tools:text="+91&#032;&#032;&#032;&#032;&#032;&#032;&#032;&#032;&#032;&#032;&#032;India"/>
+</layout>

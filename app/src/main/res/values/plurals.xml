@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<plurals name="format_age">
+		<item quantity="one">%d Year</item>
+		<item quantity="other">%d Years</item>
+	</plurals>
+
+	<plurals name="format_day">
+		<item quantity="one">%d Day</item>
+		<item quantity="other">%d Days</item>
+	</plurals>
+</resources>

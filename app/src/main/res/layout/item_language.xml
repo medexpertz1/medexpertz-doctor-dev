@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".LanguageItemBinding">
+		<import type="android.view.View"/>
+		<variable name="item" type="com.medexpertz.medexpertzdoctor.auth.Language"/>
+	</data>
+
+	<android.support.constraint.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingEnd="0dp"
+		android:paddingStart="15.7dp"
+		android:paddingTop="10.7dp">
+
+		<TextView
+			android:id="@+id/titleTV"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="10dp"
+			android:fontFamily="@font/proxima_nova_bold"
+			android:text="@{item.languageName}"
+			android:textColor="#282828"
+			android:textSize="16sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="Ophthalmologist"/>
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:contentDescription="@null"
+			android:src="@drawable/ic_check_circle_green_16dp"
+			android:visibility="@{item.isSelected ? View.VISIBLE : View.INVISIBLE}"
+			app:layout_constraintBottom_toBottomOf="@id/titleTV"
+			app:layout_constraintEnd_toEndOf="@id/titleTV"
+			app:layout_constraintTop_toTopOf="@id/titleTV"/>
+
+		<View
+			android:layout_width="0dp"
+			android:layout_height="0.7dp"
+			android:layout_marginTop="12dp"
+			android:background="#4c000000"
+			app:layout_constraintTop_toBottomOf="@id/titleTV"/>
+	</android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+	<!--suppress AndroidUnknownAttribute -->
+	<data class=".NotificationActivityBinding">
+		<import type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+		<import type="android.view.View"/>
+
+		<variable name="adapter" type="com.medexpertz.medexpertzdoctor.notification.NotificationAdapter"/>
+		<variable name="state" type="com.medexpertz.medexpertzdoctor.etc.model.Status"/>
+		<variable name="handler" type="com.medexpertz.medexpertzdoctor.notification.NotificationActivity"/>
+	</data>
+	<android.support.constraint.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".notification.NotificationActivity">
+		<android.support.v4.widget.SwipeRefreshLayout
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:onRefreshListener="@{() -> handler.onRefresh()}"
+			app:refreshing="@{state == Status.LOADING}">
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/notificationRV"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:adapter="@{adapter}"
+				app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+				tools:listitem="@layout/item_notification"/>
+		</android.support.v4.widget.SwipeRefreshLayout>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/no_notifications"
+			android:textColor="#848484"
+			android:visibility="@{state == Status.SUCCESS &amp;&amp; adapter.itemCount == 0 ? View.VISIBLE : View.GONE}"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
+	</android.support.constraint.ConstraintLayout>
+</layout>
